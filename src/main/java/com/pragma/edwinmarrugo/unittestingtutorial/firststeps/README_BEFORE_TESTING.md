@@ -41,7 +41,7 @@ DADOS los números 3 y 2, CUANDO ejecute la función de sumar, ENTONCES el resul
 
 Como no tenemos ninguna función llamada sum en nuestra clase Calculadora, el IDE dice que no existe. Por lo tanto, vamos a crearla:
 ![img.png](../../../../../../resources/firststepsimages/sumMethodCreated.png)
-10) Si corremos el test, ¿qué pasará?
+10) Si corremos el test, ¿qué pasará?    
 ![img.png](../../../../../../resources/firststepsimages/runTestFirst.png)  
 Como ves, "sum" ya no está en rojo y está listo el test para correr, veamos el resultado:
 
