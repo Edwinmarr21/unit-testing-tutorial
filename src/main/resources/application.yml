@@ -1,0 +1,14 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: unit-testing-tutorial
+  datasource:
+    url: jdbc:derby:memory:myDB;create=true
+    driver-class-name: org.apache.derby.jdbc.EmbeddedDriver
+    username: sa
+    password: password
+    jpa:
+      database-platform: org.hibernate.dialect.DerbyTenSevenDialect
+      hibernate:
+        ddl-auto: update
