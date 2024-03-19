@@ -7,10 +7,11 @@ import lombok.RequiredArgsConstructor;
 import java.util.Optional;
 
 @RequiredArgsConstructor
-public class TechRegistryUseCaseImpl {
+public class TechRegistryUseCaseImpl implements TechRegistryUseCase{
 
     private final TechPersistencePort techPersistencePort;
 
+    @Override
     public Optional<Technology> saveTechnology(Technology technology) {
         return techPersistencePort.insertTechnology(technology);
     }

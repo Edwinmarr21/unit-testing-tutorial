@@ -104,7 +104,34 @@ Si ejecutamos el test de nuevo, veremos que esta vez, funcionó según lo planea
 A este proceso se le conoce como el Red green refactor. Primero se hace fallar, luego se hace pasar con la mínima solución posible y
 luego si existe lugar, se refactoriza para mejorarlo:
 
-![img.png](redGreenRefactor.png)  
+![img.png](../../../../../../../resources/usecasesimages/redGreenRefactor.png)  
 
+## ¡No testeemos solo el camino feliz!
 
+Ahora, vamos a testear las excepciones en nuestro desarrollo:
+
+Si ocurre una excepción en el método que inserta en la persistencia, la tecnología tendrá valor nulo.
+
+DADA una tecnología y DADO que la capa de persistencia no logra insertar la tecnología devolviendo un valor null, 
+CUANDO se invoque el método de guardar tecnología del caso de uso, 
+ENTONCES el valor retornado debe ser nulo.
+
+![img.png](../../../../../../../resources/usecasesimages/testDeExcepcionDeBaseDeDatos.png)
+
+Si corremos el test, vemos que pasa correctamente:
+
+![img.png](../../../../../../../resources/usecasesimages/resultadoTestDeExcepcionBd.png)
+
+Ahora, existe un principio que se llama DRY(no te repitas a ti mismo), por lo tanto, vamos a extraer la lógica repetida
+que es la de la data de prueba. Movámosla a una clase especialmente para la data de prueba:
+
+![img.png](../../../../../../../resources/usecasesimages/testDataClass.png)  
+
+Y así quedan nuestros tests luego de seguir los consejos de sonarlint y abstraer la lógica repetida:
+
+![img.png](../../../../../../../resources/usecasesimages/testsAfterSonarLint.png)  
+
+Se removieron los eq de ArgumentMatchers
+
+## Ya estamos listos para desarrollar la persistencia
 

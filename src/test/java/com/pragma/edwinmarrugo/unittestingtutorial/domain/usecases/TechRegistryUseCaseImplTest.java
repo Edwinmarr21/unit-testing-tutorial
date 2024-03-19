@@ -2,6 +2,7 @@ package com.pragma.edwinmarrugo.unittestingtutorial.domain.usecases;
 
 import com.pragma.edwinmarrugo.unittestingtutorial.domain.model.Technology;
 import com.pragma.edwinmarrugo.unittestingtutorial.domain.ports.TechPersistencePort;
+import com.pragma.edwinmarrugo.unittestingtutorial.testdata.TestData;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,16 +28,22 @@ class TechRegistryUseCaseImplTest {
     @DisplayName("Deberia insertar una tecnologia en la base de datos correctamente")
     void itShouldInsertATechnologyInTheDatabaseCorrectly() {
         //GIVEN
-        Technology technology = Technology.builder()
-                .id("TC0001")
-                .name("Spring framework")
-                .description("Framework de Java")
-                .build();
-        given(techPersistencePort.insertTechnology(eq(technology))).willReturn(Optional.of(technology));
+        Technology technology = TestData.getTechnology();
+        given(techPersistencePort.insertTechnology(technology)).willReturn(Optional.of(technology));
         //WHEN
         Optional<Technology> result = techRegistryUseCase.saveTechnology(technology);
         //THEN
-        assertThat(result).isPresent();
-        assertThat(result.get()).isEqualTo(technology);
+        assertThat(result).isPresent().contains(technology);
+    }
+    @Test
+    @DisplayName("Deberia retornar null al insertar una tecnologia en la base de datos con fallos")
+    void itShouldReturnNullWhenInsertingATechnologyInTheDatabaseWithFailure() {
+        //GIVEN
+        Technology technology = TestData.getTechnology();
+        given(techPersistencePort.insertTechnology(technology)).willReturn(Optional.empty());
+        //WHEN
+        Optional<Technology> result = techRegistryUseCase.saveTechnology(technology);
+        //THEN
+        assertThat(result).isEmpty();
     }
 }

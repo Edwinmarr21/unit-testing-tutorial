@@ -3,15 +3,13 @@ package com.pragma.edwinmarrugo.unittestingtutorial.infrastructure.entrypoints.d
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
+@EqualsAndHashCode
 public class TechRequest {
     @NotBlank(message = "id cannot be blank")
     @NotNull(message = "id cannot be null")
@@ -22,6 +20,6 @@ public class TechRequest {
     private String name;
     @NotNull(message = "name cannot be null")
     @NotBlank(message = "name cannot be blank")
-    @Size(max = 50, message = "name must be less than or equal to 50 characters")
+    @Size(max = 50, message = "name must be less than or equal to 90 characters")
     private String description;
 }
